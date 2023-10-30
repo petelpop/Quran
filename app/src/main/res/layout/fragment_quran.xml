@@ -6,9 +6,9 @@
     tools:context="com.pall.quranapp.presentation.QuranFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_quran"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv_quran"
         tools:listitem="@layout/item_surah"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

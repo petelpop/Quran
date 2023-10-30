@@ -1,12 +1,15 @@
 package com.pall.quranapp.presentation.quran
 
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pall.quranapp.network.SurahItem
 import com.pall.quranapp.adapter.SurahAdapter
 import com.damarazka.quran.databinding.ActivityDetailSurahBinding
+import com.damarazka.quran.databinding.CustomViewAlertDialogBinding
+import com.pall.quranapp.network.AyahsItem
 
 
 class DetailSurahActivity : AppCompatActivity() {
@@ -24,10 +27,16 @@ class DetailSurahActivity : AppCompatActivity() {
 
         initView()
         val mAdapter = SurahAdapter()
+        mAdapter.setOnItemClicked(object : SurahAdapter.OnItemClickCallBack {
+            override fun onItemClicked(data: AyahsItem) {
+                showAlertDialog()
+            }
+
+        })
 
         val quranViewModel = ViewModelProvider(this)[QuranViewModel::class.java]
         surah.number?.let { quranViewModel.getListAyahBySurah(it) }
-        quranViewModel.listAyah.observe(this){
+        quranViewModel.listAyah.observe(this) {
             mAdapter.setData(it.quranEdition?.get(0)?.ayahs, it.quranEdition)
             binding.rvSurah.apply {
                 adapter = mAdapter
@@ -36,6 +45,12 @@ class DetailSurahActivity : AppCompatActivity() {
         }
     }
 
+    private fun showAlertDialog() {
+        val builder = AlertDialog.Builder(this)
+        val view = CustomViewAlertDialogBinding.inflate(layoutInflater)
+        builder.setView(view.root)
+        builder.show()
+    }
     private fun initView() {
         binding.apply {
             tvDetailSurah.text = surah.englishName

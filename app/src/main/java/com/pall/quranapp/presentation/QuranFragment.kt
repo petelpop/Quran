@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.lifecycle.ViewModelProvider
+import com.pall.quranapp.adapter.QuranAdapter
 import com.damarazka.quran.R
 import com.damarazka.quran.databinding.FragmentQuranBinding
 import com.pall.quranapp.presentation.quran.QuranViewModel
@@ -16,7 +18,7 @@ class QuranFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentQuranBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -25,5 +27,13 @@ class QuranFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val quranViewModel = ViewModelProvider(this)[QuranViewModel::class.java]
         quranViewModel.getListSurah()
+        quranViewModel.listSurah.observe(viewLifecycleOwner){
+            binding.rvQuran.apply {
+                val mAdapter = QuranAdapter()
+                mAdapter.setData(it.listSurah)
+                adapter = mAdapter
+                layoutManager = LinearLayoutManager(context)
+            }
+        }
     }
 }

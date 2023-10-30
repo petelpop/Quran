@@ -1,4 +1,4 @@
-package com.pall.quranapp.presentation
+package com.pall.quranapp.presentation.quran
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.lifecycle.ViewModelProvider
 import com.pall.quranapp.adapter.QuranAdapter
-import com.damarazka.quran.R
 import com.damarazka.quran.databinding.FragmentQuranBinding
-import com.pall.quranapp.presentation.quran.QuranViewModel
 
 class QuranFragment : Fragment() {
     private var _binding : FragmentQuranBinding? = null

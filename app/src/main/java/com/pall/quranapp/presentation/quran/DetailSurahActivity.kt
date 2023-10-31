@@ -8,11 +8,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.damarazka.quran.R
+import com.pall.quranapp.R
 import com.pall.quranapp.network.SurahItem
 import com.pall.quranapp.adapter.SurahAdapter
-import com.damarazka.quran.databinding.ActivityDetailSurahBinding
-import com.damarazka.quran.databinding.CustomViewAlertDialogBinding
+import com.pall.quranapp.databinding.ActivityDetailSurahBinding
+import com.pall.quranapp.databinding.CustomViewAlertDialogBinding
 import com.pall.quranapp.network.AyahsItem
 import java.lang.Exception
 

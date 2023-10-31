@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.lifecycle.ViewModelProvider
 import com.pall.quranapp.adapter.QuranAdapter
-import com.damarazka.quran.databinding.FragmentQuranBinding
+import com.pall.quranapp.databinding.FragmentQuranBinding
 
 class QuranFragment : Fragment() {
     private var _binding : FragmentQuranBinding? = null

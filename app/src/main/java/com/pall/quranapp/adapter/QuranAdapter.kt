@@ -4,8 +4,8 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.damarazka.quran.databinding.FragmentQuranBinding
-import com.damarazka.quran.databinding.ItemSurahBinding
+import com.pall.quranapp.databinding.FragmentQuranBinding
+import com.pall.quranapp.databinding.ItemSurahBinding
 import com.pall.quranapp.network.SurahItem
 import com.pall.quranapp.presentation.quran.DetailSurahActivity
 

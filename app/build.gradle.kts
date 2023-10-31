@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.damarazka.quran"
+    namespace = "com.pall.quranapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.damarazka.quran"
+        applicationId = "com.pall.quranapp"
         minSdk = 33
         targetSdk = 33
         versionCode = 1

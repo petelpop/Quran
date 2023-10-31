@@ -3,7 +3,7 @@ package com.pall.quranapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.damarazka.quran.databinding.ItemAyahBinding
+import com.pall.quranapp.databinding.ItemAyahBinding
 import com.pall.quranapp.network.AyahsItem
 import com.pall.quranapp.network.QuranEdition
 

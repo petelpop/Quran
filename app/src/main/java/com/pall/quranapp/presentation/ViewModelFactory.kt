@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.pall.quranapp.di.Injection
-import com.pall.quranapp.network.quran.QuranViewModel
+import com.pall.quranapp.presentation.quran.QuranViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory : ViewModelProvider.NewInstanceFactory() {

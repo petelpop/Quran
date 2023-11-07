@@ -1,4 +1,4 @@
-package com.pall.quranapp.network.quran
+package com.pall.quranapp.presentation.quran
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
@@ -19,6 +19,7 @@ import com.pall.quranapp.data.Resource
 import com.pall.quranapp.databinding.ActivityDetailSurahBinding
 import com.pall.quranapp.databinding.CustomViewAlertDialogBinding
 import com.pall.quranapp.domain.model.Ayah
+import com.pall.quranapp.domain.model.Surah
 import com.pall.quranapp.network.AyahsItem
 import com.pall.quranapp.presentation.ViewModelFactory
 import java.lang.Exception
@@ -28,8 +29,8 @@ class DetailSurahActivity : AppCompatActivity() {
     private var _binding: ActivityDetailSurahBinding? = null
     private val binding get() = _binding as ActivityDetailSurahBinding
 
-    private var _surah: SurahItem? = null
-    private val surah get() = _surah as SurahItem
+    private var _surah: Surah? = null
+    private val surah get() = _surah as Surah
 
     private var _mediaPlayer: MediaPlayer? = null
     private val mediaPlayer get() = _mediaPlayer as MediaPlayer
@@ -39,7 +40,7 @@ class DetailSurahActivity : AppCompatActivity() {
         _binding = ActivityDetailSurahBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        _surah = intent.getParcelableExtra(EXTRA_DATA, SurahItem::class.java)
+        _surah = intent.getParcelableExtra(EXTRA_DATA, Surah::class.java)
 
         initView()
         val mAdapter = SurahAdapter()

@@ -4,7 +4,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-
 data class AyahResponse(
 
     @Json(name="code")
@@ -18,7 +17,6 @@ data class AyahResponse(
 )
 
 @JsonClass(generateAdapter = true)
-
 data class Edition(
 
     @Json(name="identifier")
@@ -44,7 +42,6 @@ data class Edition(
 )
 
 @JsonClass(generateAdapter = true)
-
 data class AyahsItem(
 
     @Json(name="number")
@@ -61,7 +58,6 @@ data class AyahsItem(
 )
 
 @JsonClass(generateAdapter = true)
-
 data class QuranEditionItem(
 
     @Json(name="number")

@@ -1,4 +1,4 @@
-package com.pall.quranapp.network.quran
+package com.pall.quranapp.presentation.quran
 
 import android.util.Log
 import androidx.lifecycle.LiveData

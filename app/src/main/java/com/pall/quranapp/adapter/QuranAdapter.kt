@@ -8,7 +8,7 @@ import com.pall.quranapp.databinding.FragmentQuranBinding
 import com.pall.quranapp.databinding.ItemSurahBinding
 import com.pall.quranapp.domain.model.Surah
 import com.pall.quranapp.network.SurahItem
-import com.pall.quranapp.network.quran.DetailSurahActivity
+import com.pall.quranapp.presentation.quran.DetailSurahActivity
 
 class QuranAdapter : RecyclerView.Adapter<QuranAdapter.MyViewHolder>() {
     private val listSurah = ArrayList<Surah>()

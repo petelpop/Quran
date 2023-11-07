@@ -11,7 +11,7 @@ data class AyahResponse(
     val code: Int? = null,
 
     @Json(name="data")
-    val quranEdition: List<QuranEdition>? = null,
+    val quranEditionItem: List<QuranEditionItem>,
 
     @Json(name="status")
     val status: String? = null
@@ -50,29 +50,11 @@ data class AyahsItem(
     @Json(name="number")
     val number: Int? = null,
 
-    @Json(name="hizbQuarter")
-    val hizbQuarter: Int? = null,
-
-    @Json(name="ruku")
-    val ruku: Int? = null,
-
-    @Json(name="manzil")
-    val manzil: Int? = null,
-
     @Json(name="text")
     val text: String? = null,
 
-    @Json(name="page")
-    val page: Int? = null,
-
     @Json(name="numberInSurah")
     val numberInSurah: Int? = null,
-
-    @Json(name="juz")
-    val juz: Int? = null,
-
-    @Json(name="audioSecondary")
-    val audioSecondary: List<String>? = null,
 
     @Json(name="audio")
     val audio: String? = null
@@ -80,7 +62,7 @@ data class AyahsItem(
 
 @JsonClass(generateAdapter = true)
 
-data class QuranEdition(
+data class QuranEditionItem(
 
     @Json(name="number")
     val number: Int? = null,
@@ -97,11 +79,8 @@ data class QuranEdition(
     @Json(name="name")
     val name: String? = null,
 
-    @Json(name="edition")
-    val edition: Edition? = null,
-
     @Json(name="ayahs")
-    val ayahs: List<AyahsItem>? = null,
+    val ayahs: List<AyahsItem>,
 
     @Json(name="englishNameTranslation")
     val englishNameTranslation: String? = null

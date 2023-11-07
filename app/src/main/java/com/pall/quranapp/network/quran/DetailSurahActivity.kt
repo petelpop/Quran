@@ -1,19 +1,26 @@
-package com.pall.quranapp.presentation.quran
+package com.pall.quranapp.network.quran
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.nfc.NfcAdapter.EXTRA_DATA
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.pall.quranapp.R
 import com.pall.quranapp.network.SurahItem
 import com.pall.quranapp.adapter.SurahAdapter
+import com.pall.quranapp.data.Resource
 import com.pall.quranapp.databinding.ActivityDetailSurahBinding
 import com.pall.quranapp.databinding.CustomViewAlertDialogBinding
+import com.pall.quranapp.domain.model.Ayah
 import com.pall.quranapp.network.AyahsItem
+import com.pall.quranapp.presentation.ViewModelFactory
 import java.lang.Exception
 
 
@@ -26,6 +33,7 @@ class DetailSurahActivity : AppCompatActivity() {
 
     private var _mediaPlayer: MediaPlayer? = null
     private val mediaPlayer get() = _mediaPlayer as MediaPlayer
+    private val quranViewModel: QuranViewModel by viewModels { ViewModelFactory() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailSurahBinding.inflate(layoutInflater)
@@ -36,24 +44,51 @@ class DetailSurahActivity : AppCompatActivity() {
         initView()
         val mAdapter = SurahAdapter()
         mAdapter.setOnItemClicked(object : SurahAdapter.OnItemClickCallBack {
-            override fun onItemClicked(data: AyahsItem) {
+            override fun onItemClicked(data: Ayah) {
                 showAlertDialog(data)
             }
 
         })
 
-        val quranViewModel = ViewModelProvider(this)[QuranViewModel::class.java]
-        surah.number?.let { quranViewModel.getListAyahBySurah(it) }
-        quranViewModel.listAyah.observe(this) {
-            mAdapter.setData(it.quranEdition?.get(0)?.ayahs, it.quranEdition)
-            binding.rvSurah.apply {
-                adapter = mAdapter
-                layoutManager = LinearLayoutManager(this@DetailSurahActivity)
+        val number = surah.number
+        if (number != null) {
+            quranViewModel.getDetailSurahWithQuranEdition(number).observe(this) {
+                when (it) {
+                    is Resource.Loading -> showLoading(true)
+                    is Resource.Success -> {
+                        mAdapter.setData(it.data?.get(0)?.ayahs, it.data)
+                        binding.rvSurah.layoutManager = LinearLayoutManager(this@DetailSurahActivity)
+                            binding.rvSurah.adapter = mAdapter
+                        showLoading(false)
+                    }
+                    is Resource.Error -> {
+                        Snackbar.make(binding.root, "Error: " + it.message, Snackbar.LENGTH_INDEFINITE).show()
+                        showLoading(false)
+                    }
+                }
+
+            }
+        } else {
+            Toast.makeText(this, "Surah Number Not Found.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.apply {
+            if (isLoading) {
+                progressBar.visibility = View.VISIBLE
+                rvSurah.visibility = View.GONE
+                cvDetailSurah.visibility = View.GONE
+            } else {
+                progressBar.visibility = View.GONE
+                rvSurah.visibility = View.VISIBLE
+                cvDetailSurah.visibility = View.VISIBLE
             }
         }
     }
 
-    private fun showAlertDialog(dataAudio: AyahsItem) {
+
+    private fun showAlertDialog(dataAudio: Ayah) {
         _mediaPlayer = MediaPlayer()
         val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog).create()
         val view = CustomViewAlertDialogBinding.inflate(layoutInflater)
@@ -78,7 +113,7 @@ class DetailSurahActivity : AppCompatActivity() {
                 mediaPlayer.setDataSource(dataAudio.audio)
                 mediaPlayer.prepare()
                 mediaPlayer.start()
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
@@ -88,7 +123,7 @@ class DetailSurahActivity : AppCompatActivity() {
         }
         builder.setCanceledOnTouchOutside(false)
         builder.show()
-        mediaPlayer.setOnCompletionListener{
+        mediaPlayer.setOnCompletionListener {
             builder.dismiss()
         }
     }

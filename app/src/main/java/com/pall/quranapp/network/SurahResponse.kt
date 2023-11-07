@@ -12,7 +12,7 @@ data class SurahResponse(
     val code: Int? = null,
 
     @Json(name="data")
-    val listSurah: List<SurahItem>? = null,
+    val listSurah: List<SurahItem>,
 
     @Json(name="status")
     val status: String? = null

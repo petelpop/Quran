@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_doa" />
     <fragment
         android:id="@+id/nav_quran"
-        android:name="com.pall.quranapp.presentation.quran.QuranFragment"
+        android:name="com.pall.quranapp.network.quran.QuranFragment"
         android:label="fragment_quran"
         tools:layout="@layout/fragment_quran" />
 </navigation>

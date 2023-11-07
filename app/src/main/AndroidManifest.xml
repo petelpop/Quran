@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Quran"
         tools:targetApi="31">
         <activity
-            android:name="com.pall.quranapp.presentation.quran.DetailSurahActivity"
+            android:name="com.pall.quranapp.network.quran.DetailSurahActivity"
             android:exported="false" />
         <activity
             android:name="com.pall.quranapp.presentation.DoaFragment"

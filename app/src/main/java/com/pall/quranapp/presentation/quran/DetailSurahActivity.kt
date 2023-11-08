@@ -13,14 +13,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.pall.quranapp.R
-import com.pall.quranapp.network.SurahItem
+import com.pall.quranapp.core.network.SurahItem
 import com.pall.quranapp.adapter.SurahAdapter
-import com.pall.quranapp.data.Resource
+import com.pall.quranapp.core.data.Resource
 import com.pall.quranapp.databinding.ActivityDetailSurahBinding
 import com.pall.quranapp.databinding.CustomViewAlertDialogBinding
-import com.pall.quranapp.domain.model.Ayah
-import com.pall.quranapp.domain.model.Surah
-import com.pall.quranapp.network.AyahsItem
+import com.pall.quranapp.core.domain.model.Ayah
+import com.pall.quranapp.core.domain.model.Surah
+import com.pall.quranapp.core.network.AyahsItem
 import com.pall.quranapp.presentation.ViewModelFactory
 import java.lang.Exception
 

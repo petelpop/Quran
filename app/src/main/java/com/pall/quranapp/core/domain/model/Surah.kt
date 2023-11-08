@@ -1,15 +1,15 @@
-package com.pall.quranapp.domain.model
+package com.pall.quranapp.core.domain.model
 
-import com.pall.quranapp.network.AyahsItem
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
-data class QuranEdition(
-
+@Parcelize
+data class Surah(
     val number: Int? = null,
     val englishName: String? = null,
     val numberOfAyahs: Int? = null,
     val revelationType: String? = null,
     val name: String? = null,
-    val ayahs: List<Ayah>,
     val englishNameTranslation: String? = null
-)
+): Parcelable

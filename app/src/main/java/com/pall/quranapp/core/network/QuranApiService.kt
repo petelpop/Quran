@@ -1,4 +1,4 @@
-package com.pall.quranapp.network
+package com.pall.quranapp.core.network
 
 import retrofit2.http.GET
 import retrofit2.http.Path

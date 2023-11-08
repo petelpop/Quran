@@ -1,4 +1,4 @@
-package com.pall.quranapp.network
+package com.pall.quranapp.core.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

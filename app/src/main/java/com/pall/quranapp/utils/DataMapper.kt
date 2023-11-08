@@ -1,11 +1,11 @@
 package com.pall.quranapp.utils
 
-import com.pall.quranapp.domain.model.Ayah
-import com.pall.quranapp.domain.model.QuranEdition
-import com.pall.quranapp.domain.model.Surah
-import com.pall.quranapp.network.AyahsItem
-import com.pall.quranapp.network.QuranEditionItem
-import com.pall.quranapp.network.SurahItem
+import com.pall.quranapp.core.domain.model.Ayah
+import com.pall.quranapp.core.domain.model.QuranEdition
+import com.pall.quranapp.core.domain.model.Surah
+import com.pall.quranapp.core.network.AyahsItem
+import com.pall.quranapp.core.network.QuranEditionItem
+import com.pall.quranapp.core.network.SurahItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf

@@ -1,4 +1,4 @@
-package com.pall.quranapp.network
+package com.pall.quranapp.core.network
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

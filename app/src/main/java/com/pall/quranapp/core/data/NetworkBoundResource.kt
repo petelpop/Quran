@@ -1,6 +1,6 @@
-package com.pall.quranapp.data
+package com.pall.quranapp.core.data
 
-import com.pall.quranapp.domain.model.Surah
+import com.pall.quranapp.core.domain.model.Surah
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.first

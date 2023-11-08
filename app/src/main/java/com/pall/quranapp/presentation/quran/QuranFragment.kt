@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.material.snackbar.Snackbar
 import com.pall.quranapp.adapter.QuranAdapter
-import com.pall.quranapp.data.Resource
+import com.pall.quranapp.core.data.Resource
 import com.pall.quranapp.databinding.FragmentQuranBinding
 import com.pall.quranapp.presentation.ViewModelFactory
 import kotlinx.coroutines.flow.observeOn

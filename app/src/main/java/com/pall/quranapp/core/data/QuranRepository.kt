@@ -1,11 +1,11 @@
-package com.pall.quranapp.data
+package com.pall.quranapp.core.data
 
 import android.provider.ContactsContract.Data
-import com.pall.quranapp.domain.model.QuranEdition
-import com.pall.quranapp.domain.model.Surah
-import com.pall.quranapp.domain.repository.IQuranRepository
-import com.pall.quranapp.network.QuranEditionItem
-import com.pall.quranapp.network.SurahItem
+import com.pall.quranapp.core.domain.model.QuranEdition
+import com.pall.quranapp.core.domain.model.Surah
+import com.pall.quranapp.core.domain.repository.IQuranRepository
+import com.pall.quranapp.core.network.QuranEditionItem
+import com.pall.quranapp.core.network.SurahItem
 import com.pall.quranapp.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 

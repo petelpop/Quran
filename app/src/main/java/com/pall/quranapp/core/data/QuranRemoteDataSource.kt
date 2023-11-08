@@ -1,9 +1,9 @@
-package com.pall.quranapp.data
+package com.pall.quranapp.core.data
 
 import android.util.Log
-import com.pall.quranapp.network.QuranApiService
-import com.pall.quranapp.network.QuranEditionItem
-import com.pall.quranapp.network.SurahItem
+import com.pall.quranapp.core.network.QuranApiService
+import com.pall.quranapp.core.network.QuranEditionItem
+import com.pall.quranapp.core.network.SurahItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

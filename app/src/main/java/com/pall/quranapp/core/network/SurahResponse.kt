@@ -1,4 +1,4 @@
-package com.pall.quranapp.network
+package com.pall.quranapp.core.network
 
 import android.os.Parcelable
 import com.squareup.moshi.Json

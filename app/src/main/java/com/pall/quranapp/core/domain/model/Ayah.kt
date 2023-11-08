@@ -1,4 +1,4 @@
-package com.pall.quranapp.domain.model
+package com.pall.quranapp.core.domain.model
 
 import com.squareup.moshi.Json
 

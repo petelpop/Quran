@@ -8,8 +8,4 @@
         android:id="@+id/nav_quran"
         android:icon="@mipmap/ic_launcher"
         android:title="@string/quran" />
-    <item
-        android:id="@+id/nav_doa"
-        android:icon="@mipmap/ic_launcher"
-        android:title="@string/doa" />
 </menu>

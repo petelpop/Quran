@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -18,6 +19,8 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
 import com.pall.quranapp.databinding.ActivityMainBinding
+import com.pall.quranapp.presentation.SharedViewModel
+import com.pall.quranapp.presentation.ViewModelFactory
 import com.pall.quranapp.utils.LOCATION_PERMISSION_REQ_CODE
 import java.util.Locale
 
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     private var _fusedLocation: FusedLocationProviderClient? = null
     private val fusedLocation get() = _fusedLocation as FusedLocationProviderClient
+
+    private val sharedViewModel: SharedViewModel by viewModels { ViewModelFactory(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -45,22 +50,24 @@ class MainActivity : AppCompatActivity() {
     private fun getUserLocation() {
         if (checkLocationPermission()) {
             if (isLocationOn()){
-                fusedLocation.lastLocation.addOnCompleteListener {
-                    if (it.result != null){
-                        val geocoder = Geocoder(this, Locale.getDefault())
-                        geocoder.getFromLocation(
-                            it.result.latitude,
-                            it.result.longitude,
-                            1
-                        ) { listAdress ->
-                            val city = listAdress[0].subAdminArea
-                            val resultOfCity = city.split(" ")
-                            Snackbar.make(binding.root, resultOfCity[1], Snackbar.LENGTH_LONG).show()
-                        }
-                    } else {
-                        Toast.makeText(this, "Sorry, something wrong", Toast.LENGTH_SHORT).show()
-                    }
-                }
+                sharedViewModel.getKnownLastLocation()
+//                fusedLocation.lastLocation.addOnCompleteListener {
+//                    if (it.result != null) {
+//                        val geocoder = Geocoder(this, Locale.getDefault())
+//                        geocoder.getFromLocation(
+//                            it.result.latitude,
+//                            it.result.longitude,
+//                            1
+//                        ) { listAddress ->
+//                            val city = listAddress[0].subAdminArea
+//                            val resultOfCity = city.split(" ")
+//                            Snackbar.make(binding.root, resultOfCity[1], Snackbar.LENGTH_INDEFINITE)
+//                                .show()
+//                        }
+//                    } else {
+//                        Toast.makeText(this, "Sorry something wrong", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
             } else {
                 Toast.makeText(this, "Please Turn on Location", Toast.LENGTH_SHORT).show()
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)

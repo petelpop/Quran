@@ -45,9 +45,11 @@ class QuranFragment : Fragment() {
                    showLoading(false)
                }
                is   Resource.Error -> {
-                   Toast.makeText(context, "Error: " + it.message, Toast.LENGTH_SHORT).show()
-                   Snackbar.make(view, "Error: " + it.message, Snackbar.LENGTH_INDEFINITE)
-                       .show()
+                   val snackbar = Snackbar.make(view, "Error: " + it.message, Snackbar.LENGTH_INDEFINITE)
+                       snackbar.setAction("OK") {
+                           snackbar.dismiss()
+                       }
+                   snackbar.show()
                    showLoading(false)
                }
             }

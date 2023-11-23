@@ -1,13 +1,14 @@
 package com.pall.quranapp.utils
 
 import com.pall.quranapp.core.domain.model.Ayah
+import com.pall.quranapp.core.domain.model.City
 import com.pall.quranapp.core.domain.model.QuranEdition
 import com.pall.quranapp.core.domain.model.Surah
-import com.pall.quranapp.core.network.AyahsItem
-import com.pall.quranapp.core.network.QuranEditionItem
-import com.pall.quranapp.core.network.SurahItem
+import com.pall.quranapp.core.data.network.quran.AyahsItem
+import com.pall.quranapp.core.data.network.quran.QuranEditionItem
+import com.pall.quranapp.core.data.network.quran.SurahItem
+import com.pall.quranapp.core.data.network.adzan.CityItem
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 
 object DataMapper {
@@ -59,5 +60,18 @@ object DataMapper {
             listAyah.add(ayah)
         }
         return listAyah
+    }
+
+    @JvmName("mapCityItemToDomain")
+    fun mapResponseToDomain(input: List<CityItem>):Flow<List<City>> {
+        val cities = ArrayList<City>()
+        input.map {
+            val city = City(
+                id = it.id,
+                lokasi = it.lokasi
+            )
+            cities.add(city)
+        }
+        return flowOf(cities)
     }
 }

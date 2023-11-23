@@ -1,8 +1,5 @@
 package com.pall.quranapp.core.domain.model
 
-import com.pall.quranapp.core.network.AyahsItem
-import com.squareup.moshi.Json
-
 data class QuranEdition(
 
     val number: Int? = null,

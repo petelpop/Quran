@@ -1,13 +1,21 @@
 package com.pall.quranapp.core.di
 
-import com.pall.quranapp.core.data.QuranRemoteDataSource
+import android.content.Context
+import com.pall.quranapp.core.data.AdzanRepository
+import com.pall.quranapp.core.data.network.RemoteDataSource
 import com.pall.quranapp.core.data.QuranRepository
-import com.pall.quranapp.core.network.ApiConfig
+import com.pall.quranapp.core.data.local.LocationPreferences
+import com.pall.quranapp.core.data.network.ApiConfig
 
 object Injection {
-    fun provideQuranRepository(): QuranRepository {
-        val quranApiService = ApiConfig.quranApiService
-        val quranRemoteDataSource = QuranRemoteDataSource(quranApiService)
-        return QuranRepository(quranRemoteDataSource)
+    private val quranApiService = ApiConfig.quranApiService
+    private val adzanApiService = ApiConfig.adzanApiService
+    private val remoteDataSource = RemoteDataSource(quranApiService, adzanApiService)
+    fun provideQuranRepository(): QuranRepository = QuranRepository(remoteDataSource)
+
+
+    fun provideAdzanRepository(context: Context): AdzanRepository {
+        val locationPreferences = LocationPreferences(context)
+        return AdzanRepository(remoteDataSource, locationPreferences)
     }
 }

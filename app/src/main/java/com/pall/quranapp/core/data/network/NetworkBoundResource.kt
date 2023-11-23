@@ -1,12 +1,11 @@
-package com.pall.quranapp.core.data
+package com.pall.quranapp.core.data.network
 
-import com.pall.quranapp.core.domain.model.Surah
+import com.pall.quranapp.core.data.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import java.net.Authenticator.RequestorType
 
 abstract class NetworkBoundResource<ResultType, RequestType> {
     val result: Flow<Resource<ResultType>> = flow {

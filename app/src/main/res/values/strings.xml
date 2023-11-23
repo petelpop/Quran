@@ -8,4 +8,10 @@
     <string name="playing_audio">Playing Audio</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="imsak">imsak</string>
+    <string name="subuh">subuh</string>
+    <string name="dzuhur">dzuhur</string>
+    <string name="ashar">ashar</string>
+    <string name="maghrib">maghrib</string>
+    <string name="isya">isya</string>
 </resources>

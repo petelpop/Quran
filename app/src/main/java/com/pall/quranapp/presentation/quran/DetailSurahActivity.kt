@@ -2,26 +2,21 @@ package com.pall.quranapp.presentation.quran
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
-import android.nfc.NfcAdapter.EXTRA_DATA
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.pall.quranapp.R
-import com.pall.quranapp.core.network.SurahItem
 import com.pall.quranapp.adapter.SurahAdapter
 import com.pall.quranapp.core.data.Resource
 import com.pall.quranapp.databinding.ActivityDetailSurahBinding
 import com.pall.quranapp.databinding.CustomViewAlertDialogBinding
 import com.pall.quranapp.core.domain.model.Ayah
 import com.pall.quranapp.core.domain.model.Surah
-import com.pall.quranapp.core.network.AyahsItem
 import com.pall.quranapp.presentation.ViewModelFactory
 import java.lang.Exception
 

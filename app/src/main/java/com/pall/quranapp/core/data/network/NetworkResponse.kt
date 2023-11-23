@@ -1,4 +1,4 @@
-package com.pall.quranapp.core.data
+package com.pall.quranapp.core.data.network
 
 sealed class NetworkResponse<out T> {
     data class Success<out T>(val data: T): NetworkResponse<T>()

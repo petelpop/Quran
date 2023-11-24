@@ -22,55 +22,96 @@ class LocationPreferences(val context: Context) {
             Log.i("LocPref", "lastloc: $it")
             if (it != null) {
                 val geocoder = Geocoder(context, Locale.getDefault())
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= 33) {
                     geocoder.getFromLocation(
-                        -6.4802472,
-                        106.82325,
+                        it.latitude,
+                        it.longitude,
                         1
                     ) { listAddress ->
-                        Log.i("LocPref", "getKnownLastLocation: ${listAddress[0].subAdminArea}")
                         val city = listAddress[0].subAdminArea
-                        val resultOfCity = city.split(" ")
-                        //resultOfCity indo = [Kabupaten, Bogor]
-                        //resultOfCity english = [Bogor, Regency]
+                        val arrCity = city.split(" ")
                         val subLocality = listAddress[0].subLocality
                         val locality = listAddress[0].locality
-                        val resultLocation = "$subLocality.$locality"
-                        Log.i("LocPref", "getKnownLastLocation: $resultOfCity")
+                        val resultLocation = "$subLocality, $locality"
 
-                        val listCity = listOf(resultOfCity[1], resultLocation)
+                        val currentLanguage = Locale.getDefault().language
+                        Log.i("LocPref", "getCurrentLanguage: $currentLanguage")
+
+                        val cityResult: String = when (currentLanguage) {
+                            "in" -> {
+                                var result = ""
+                                for (i in 1 until arrCity.size) {
+                                    result += arrCity[i] + " "
+                                }
+                                result
+                            }
+
+                            "en" -> {
+                                var result = ""
+                                for (i in 0 until arrCity.size - 1) {
+                                    result += arrCity[i] + " "
+                                }
+                                result
+                            }
+
+                            else -> {
+                                Log.e("LocPref", "error: current language undefined")
+                                "Jakarta"
+                            }
+                        }
+                        val listCity = listOf(cityResult, resultLocation)
+                        Log.i("LocPref", "data: $listCity")
                         lastKnownLocation.postValue(listCity)
                     }
                 } else {
-                    val listAddress = geocoder.getFromLocation(
-                        -6.4802472,
-                        106.82325,
-                        1
-                    )
+                    val listAddress = geocoder.getFromLocation(it.latitude, it.longitude, 1)
                     val city = listAddress?.get(0)?.subAdminArea
-                    val resultOfCity = city?.split(" ")
-                    //resultOfCity indo = [Kabupaten, Bogor]
-                    //resultOfCity english = [Bogor, Regency]
+                    val arrCity = city?.split(" ")
                     val subLocality = listAddress?.get(0)?.subLocality
                     val locality = listAddress?.get(0)?.locality
-                    val resultLocation = "$subLocality.$locality"
-                    Log.i("LocPref", "getKnownLastLocation: $resultOfCity")
-                    if (resultOfCity != null) {
-                        val listCity = listOf(resultOfCity[1], resultLocation)
-                        lastKnownLocation.postValue(listCity)
+                    val resultLocation = "$subLocality, $locality"
+
+                    val cityResult: String = if (arrCity != null) {
+                        when (Locale.getDefault().language) {
+                            "in" -> {
+                                var result = ""
+                                for (i in 1 until arrCity.size) {
+                                    result += arrCity[i]
+                                }
+                                result
+                            }
+
+                            "en" -> {
+                                var result = ""
+                                for (i in 0 until arrCity?.size!! - 1) {
+                                    result += arrCity[i] + " "
+                                }
+                                result
+                            }
+
+                            else -> {
+                                Log.e("LocPref", "error: current language undefined")
+                                "Jakarta"
+                            }
+                        }
                     } else {
-                        val listCity = listOf("Bogor", resultLocation)
-                        lastKnownLocation.postValue(listCity)
+                        Log.e("LocPref", "error: current language undefined")
+                        "Jakarta"
                     }
+                    val listCity = listOf(cityResult, resultLocation)
+                    Log.i("LocPref", "data: $listCity")
+                    lastKnownLocation.postValue(listCity)
                 }
+
             } else {
-                Toast.makeText(context, "Sorry, something wrong...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Sorry, Something wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
         fusedLocation.lastLocation.addOnFailureListener {
-            Log.e("SharedViewModel", "getKnownLastLocation: " + it.localizedMessage)
+            Log.e("SharedViewModel", "getKnwonLastLocation: " + it.localizedMessage)
         }
+
         return lastKnownLocation
     }
 }

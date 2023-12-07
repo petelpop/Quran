@@ -38,21 +38,9 @@ class LocationPreferences(val context: Context) {
                         Log.i("LocPref", "getCurrentLanguage: $currentLanguage")
 
                         val cityResult: String = when (currentLanguage) {
-                            "in" -> {
-                                var result = ""
-                                for (i in 1 until arrCity.size) {
-                                    result += arrCity[i] + " "
-                                }
-                                result
-                            }
 
-                            "en" -> {
-                                var result = ""
-                                for (i in 0 until arrCity.size - 1) {
-                                    result += arrCity[i] + " "
-                                }
-                                result
-                            }
+                            "in" -> cityResult(false, arrCity)
+                            "en" -> cityResult(true, arrCity)
 
                             else -> {
                                 Log.e("LocPref", "error: current language undefined")
@@ -73,21 +61,10 @@ class LocationPreferences(val context: Context) {
 
                     val cityResult: String = if (arrCity != null) {
                         when (Locale.getDefault().language) {
-                            "in" -> {
-                                var result = ""
-                                for (i in 1 until arrCity.size) {
-                                    result += arrCity[i]
-                                }
-                                result
-                            }
+                            "in" -> cityResult(false, arrCity)
+                            "en" -> cityResult(true, arrCity)
 
-                            "en" -> {
-                                var result = ""
-                                for (i in 0 until arrCity?.size!! - 1) {
-                                    result += arrCity[i] + " "
-                                }
-                                result
-                            }
+
 
                             else -> {
                                 Log.e("LocPref", "error: current language undefined")
@@ -113,5 +90,20 @@ class LocationPreferences(val context: Context) {
         }
 
         return lastKnownLocation
+    }
+
+    private fun cityResult(isEnglish: Boolean, arrCity: List<String>): String {
+        var result = ""
+        if (isEnglish) {
+            for (i in 0 until arrCity?.size!! - 1) {
+                result += arrCity[i] + " "
+            }
+
+        } else {
+            for (i in 1 until arrCity.size) {
+                result += arrCity[i]
+            }
+        }
+        return result
     }
 }

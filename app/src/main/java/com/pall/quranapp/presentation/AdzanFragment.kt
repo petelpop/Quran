@@ -39,15 +39,21 @@ class AdzanFragment : Fragment() {
                 is Resource.Loading -> {}
                 is Resource.Success -> {
                     binding.tvLocation.text = it.data?.listLocation?.get(1)
+                    binding.tvDate.text = it.data?.currentDate?.get(3)
 
-                    when (val listCity = it.data?.listCity) {
+                    when (val adzanTime = it.data?.adzanTime) {
                         is Resource.Loading -> {}
                         is Resource.Success -> {
-                            val idCity = listCity.data?.get(0)?.id
-                            val city = listCity.data?.get(0)?.lokasi
-                            Log.i("AdzanFragment", "onViewCreated: $city $idCity")
-                            Toast.makeText(context, "id city of $city: $idCity", Toast.LENGTH_SHORT)
-                                .show()
+                            binding.apply {
+                                adzanTime.data?.let { time ->
+                                    tvTimeSubuh.text = time.subuh
+                                    tvTimeImsak.text = time.imsak
+                                    tvTimeDzuhur.text = time.dzuhur
+                                    tvTimeAshar.text = time.ashar
+                                    tvTimeMaghrib.text = time.maghrib
+                                    tvTimeIsya.text = time.isya
+                                }
+                            }
                         }
 
                         is Resource.Error -> {
@@ -58,7 +64,6 @@ class AdzanFragment : Fragment() {
                             Toast.makeText(context, "Something wrong.", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    it.data?.listCity?.data?.get(0)?.id
                 }
 
                 is Resource.Error -> {}

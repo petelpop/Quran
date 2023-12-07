@@ -8,6 +8,8 @@ import com.pall.quranapp.core.data.network.quran.AyahsItem
 import com.pall.quranapp.core.data.network.quran.QuranEditionItem
 import com.pall.quranapp.core.data.network.quran.SurahItem
 import com.pall.quranapp.core.data.network.adzan.CityItem
+import com.pall.quranapp.core.data.network.adzan.JadwalItem
+import com.pall.quranapp.core.domain.model.Jadwal
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
@@ -73,5 +75,22 @@ object DataMapper {
             cities.add(city)
         }
         return flowOf(cities)
+    }
+
+    @JvmName("mapJadwalToDomain")
+    fun mapResponseToDomain(input: JadwalItem): Flow<Jadwal> {
+        val jadwal = Jadwal(
+            date = input.date,
+            imsak = input.imsak,
+            isya = input.isya,
+            subuh = input.subuh,
+            dzuhur = input.dzuhur,
+            ashar = input.ashar,
+            dhuha = input.dhuha,
+            terbit = input.terbit,
+            tanggal = input.tanggal,
+            maghrib = input.maghrib
+        )
+        return flowOf()
     }
 }
